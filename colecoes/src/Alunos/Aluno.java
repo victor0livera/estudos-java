@@ -1,5 +1,7 @@
 package Alunos;
 
+import java.util.Objects;
+
 public class Aluno implements Comparable<Aluno> {
     public double nota;
     public String nome;
@@ -62,5 +64,17 @@ public class Aluno implements Comparable<Aluno> {
     @Override
     public int compareTo(Aluno aluno) {
         return this.nome.compareTo(aluno.getNome());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Aluno aluno = (Aluno) o;
+        return Double.compare(nota, aluno.nota) == 0 && Objects.equals(nome, aluno.nome) && Objects.equals(curso, aluno.curso) && Objects.equals(sala, aluno.sala);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nota, nome, curso, sala);
     }
 }
